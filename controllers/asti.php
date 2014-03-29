@@ -8,8 +8,10 @@
  * @license    GNU General Public License; see LICENSE.txt
  */
 
-require_once(BASEPATH ."/config/config.php");       // Настройки сайта. Пока только путь к шаблону
-require_once(BASEPATH ."/config/database.php");     // Настройки БД
+defined('_Asti') or die;
+
+require_once('config/config.php');       // Настройки сайта. Пока только путь к шаблону
+require_once('config/database.php');     // Настройки БД
 
 class asti
 {
@@ -25,7 +27,7 @@ class asti
 
 	function start()
 		{
-		include_once(template);     // Загружаем шаблон. Настраивается в config.php
+		require_once(template);     // Загружаем шаблон. Настраивается в config.php
 		}
 
 	function q_articles($ID)

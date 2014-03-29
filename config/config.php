@@ -1,6 +1,5 @@
 ﻿<?php
 
-define ('ASTI', $_SERVER['DOCUMENT_ROOT'] . '/Asti/');
-define ('template', $_SERVER['DOCUMENT_ROOT'] . '/Asti/templates/default/index.php');
+define ('template', $_SERVER['DOCUMENT_ROOT'] . '/templates/default/index.php');
 
 ?>

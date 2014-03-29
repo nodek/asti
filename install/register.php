@@ -15,10 +15,13 @@
 <input name="register" type="submit" value="Зарегистрировать">
 </form>
 <?php
-define('BASEPATH', '../');
-include_once ("../controllers/asti.php");
+require_once('../config/database.php');
 
-$admin = new asti; 
+mysql_connect(mysql_host, mysql_login, mysql_pass) or die ("Ошибка соединения: ". mysql_error());
+// Установка кодировки
+mysql_query("set names utf8") or die ("Ошибка в запросе: " . mysql_error());
+// Выбрать БД
+mysql_select_db(mysql_database) or die("Ошибка подключения к БД: ". mysql_error());
 
 if(isset($_POST['register']))
 	{
@@ -51,7 +54,7 @@ if(isset($_POST['register']))
 		$password = md5(md5(trim($_POST['password'])));
 		 
 		mysql_query("INSERT INTO users SET users_login='".$login."', users_password='".$password."'");
-		echo "Администратор $login успешно зарегистрирован в системе<br>Удалите папку install";//header("Location: ../modules/admin/login.php"); exit();
+		echo "Администратор $login успешно зарегистрирован в системе<br>Удалите папку install";
 		}
 	else 
 		{

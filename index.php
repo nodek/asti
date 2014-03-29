@@ -8,7 +8,7 @@
  * @license    GNU General Public License; see LICENSE.txt
  */
 
-define ('BASEPATH', dirname(__FILE__));
+define('_Asti', 1);
 
 require_once("controllers/asti.php");
 

@@ -8,8 +8,8 @@
  * @license    GNU General Public License; see LICENSE.txt
  */
 
+define('_Asti', 1);
 
-define('BASEPATH', '../');
 require_once('controllers/admin.php');
 
 $admin = new admin;

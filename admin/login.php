@@ -8,7 +8,8 @@
  * @license    GNU General Public License; see LICENSE.txt
  */
 
-define('BASEPATH', '../');
+define('_Asti', 1);
+ 
 $error[0] = 'Включите куки';
 $error[1] = 'Авторизуйтесь';
   # Функция для генерации случайной строки
@@ -29,7 +30,7 @@ $error[1] = 'Авторизуйтесь';
   }
 
   # Подключаем контроллер
-  include '/controllers/admin.php';
+  require_once('controllers/admin.php');
   $login=new admin;
   if(isset($_POST['submit']))
   {
@@ -58,7 +59,7 @@ $error[1] = 'Авторизуйтесь';
       print "<p class='p-signin'>Вы ввели неправильный логин/пароль</p>";
     }
   }
- include("/views/login.php"); 
+ require_once('views/login.php'); 
 
   # Проверяем наличие в куках номера ошибки
  if (isset($errors)) {print '<h4>'.$error[$errors].'</h4>';}

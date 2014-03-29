@@ -8,7 +8,9 @@
  * @license    GNU General Public License; see LICENSE.txt
  */
 
-require_once(BASEPATH .'/config/database.php');
+defined('_Asti') or die;
+ 
+require_once('../config/database.php');
 
 class admin
 	{
@@ -40,7 +42,7 @@ class admin
 			  header('Location: login.php'); exit();
 			}
 
-		require_once "views/index.php";             // если авторизован то загружаем views/index.php
+		require_once ('views/index.php');             // если авторизован то загружаем views/index.php
 
 		}
 	function articles()
@@ -51,7 +53,7 @@ class admin
 		{
 		if(empty($_GET) or isset($_GET['articles']))       // Если нет GET запроса, либо есть запрос с именем articles то:
 			{
-			require_once("views/articles.php");           // Подгружаем views/articles.php
+			require_once('views/articles.php');           // Подгружаем views/articles.php
 			if(isset($_POST['cr_article']))              // Создать статью
 				require_once("views/cr_article.php");
 				if(!empty($_POST['article_title']) or !empty($_POST['article_text']))
@@ -74,7 +76,7 @@ class admin
 					}
 				if(empty($article_title_ed) and empty($article_text_ed))
 					echo "Нет статьи с таким ID<br><br>"; 
-				else require_once("views/ed_article.php");
+				else require_once('views/ed_article.php');
 				}
 			if(isset($_POST['submit_ed']))
 				{
@@ -103,7 +105,7 @@ class admin
 			echo "</table>";
 			}
 		if(isset($_GET['about']))                        // Отправлен GET запрос с именем about
-			require_once("views/about.php");
+			require_once('views/about.php');
 		}
 	function ed_article($id_ed, $titl_ed, $text_ed)
 		{
