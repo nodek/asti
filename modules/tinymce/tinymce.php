@@ -3,6 +3,7 @@
         tinymce.init({
 			selector:'textarea',
 			theme: 'modern',
+			language : 'ru',
 			plugins: [
 				"advlist autolink lists link image charmap print preview hr anchor pagebreak",
 				"searchreplace wordcount visualblocks visualchars code fullscreen",

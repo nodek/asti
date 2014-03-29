@@ -37,7 +37,8 @@
     var elf = $('#elfinder').elfinder({
       // set your elFinder options here
       url: 'php/connector.php',  // connector URL
-      getFileCallback: function(file) { // editor callback
+      lang: 'ru',
+	  getFileCallback: function(file) { // editor callback
 // actually file.url - doesnt work for me, but file does. (elfinder 2.0-rc1)
         FileBrowserDialogue.mySubmit(file); // pass selected file path to TinyMCE 
       }
