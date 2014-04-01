@@ -1,14 +1,24 @@
-﻿<?php
+﻿<!--
+ * ASTI
+ * 
+ * @author Eselbaev A
+ * @link http://astana-it.kz
+ * @copyright  Copyright (C) 2014. Astana - IT. All rights reserved.
+ * @license    GNU General Public License; see LICENSE.txt
+-->
+<?php
 
 require_once('../modules/tinymce/tinymce.php');
 
 ?>
-<h2 align="center">Редактировать статью</h2>
+<h2 align="center">Редактировать материал</h2>
 <br>
 <p>Заголовок</p>
 <form method="post">
 <input type="hidden" name="article_id_ed" value="<?php echo $article_id_ed ?>"/>
 <input type="text" class="form-control" name="article_title_ed" value="<?php echo $article_title_ed ?>" /><br><br>
+<p>Категория</p>
+<?php $this->category(); ?><br><br>
 <p>Текст</p>
 <textarea name="article_text_ed">
 <?php 

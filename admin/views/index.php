@@ -1,4 +1,12 @@
 ﻿<!DOCTYPE html>
+<!--
+ * ASTI
+ * 
+ * @author Eselbaev A
+ * @link http://astana-it.kz
+ * @copyright  Copyright (C) 2014. Astana - IT. All rights reserved.
+ * @license    GNU General Public License; see LICENSE.txt
+-->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -16,7 +24,9 @@
 				</div>
 				<div class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
-						<li><a href="?articles">Статьи</a></li>
+						<li><a href=".">Главная</a></li>
+						<li><a href="?articles">Материалы</a></li>
+						<li><a href="?settings">Настройки</a></li>
 						<li><a href="?about">O CMS</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">

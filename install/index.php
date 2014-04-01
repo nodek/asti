@@ -90,6 +90,10 @@ require_once("../config/database.php");
 							users_password VARCHAR(32) not null,
 							users_hash VARCHAR(32) not null
 							)')  or die ("<br>Таблица не создана: " . mysql_error()); 
+			mysql_query('CREATE TABLE IF NOT EXISTS category(
+							category_id INTEGER not null auto_increment primary key,
+							article_category VARCHAR(30) not null
+							)')  or die ("<br>Таблица не создана: " . mysql_error());
 			echo "Таблицы успешно созданы!";
 			echo "<br><br><form action='register.php' method= 'post'>
 					<input type='submit' name='admin' value='Зарегистрировать администратора'/>

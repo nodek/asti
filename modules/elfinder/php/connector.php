@@ -32,7 +32,7 @@ $opts = array(
 		array(
 			'driver'        => 'LocalFileSystem',   // driver for accessing file system (REQUIRED)
 			'path'          => '../files/',         // path to files (REQUIRED)
-			'URL'           =>  dirname($_SERVER['PHP_SELF']) . '/../files/',
+			'URL'           =>  dirname($_SERVER['PHP_SELF']) . '/../files/', 
 			'accessControl' => 'access'             // disable and hide dot starting files (OPTIONAL)
 		)
 	)
