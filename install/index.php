@@ -82,7 +82,7 @@ require_once("../config/database.php");
 							article_title VARCHAR(120) not null,
 							article_text LONGTEXT not null,
 							article_date TIMESTAMP not null DEFAULT CURRENT_TIMESTAMP,
-							category_id INTEGER
+							article_category VARCHAR(30)
 							)')  or die ("<br>Таблица не создана: " . mysql_error());
 			mysql_query('CREATE TABLE IF NOT EXISTS users(
 							users_id INT(11) UNSIGNED not null auto_increment primary key,
