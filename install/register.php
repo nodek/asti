@@ -48,10 +48,10 @@ if(isset($_POST['register']))
 	# Если нет ошибок, то добавляем в БД нового пользователя
 	if(count($err) == 0)
 		{
-		$login = $_POST['login'];
+		$login = mysql_real_escape_string($_POST['login']);
 		 
 	# Убераем лишние пробелы и делаем двойное шифрование
-		$password = md5(md5(trim($_POST['password'])));
+		$password = mysql_real_escape_string(md5(md5(trim($_POST['password']))));
 		 
 		mysql_query("INSERT INTO users SET users_login='".$login."', users_password='".$password."'");
 		echo "Администратор $login успешно зарегистрирован в системе<br>Удалите папку install";

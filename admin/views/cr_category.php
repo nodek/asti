@@ -9,17 +9,13 @@
 <?php
 
 defined('_Asti') or die;
-require_once('../modules/tinymce/tinymce.php');
 
 ?>
-<h2 align="center">Создать материал</h2>
+
+<h2 align="center">Создать категорию</h2>
 <br>
-<p>Заголовок</p>
+<p>Имя категории</p>
 <form method="post">
-<input type="text"  class="form-control" name="article_title" /><br><br>
-<p>Категория</p>
-<?php $this->category(); ?><br><br>
-<p>Текст</p>
-<textarea name="article_text"></textarea><br>
+<input type="text"  class="form-control" name="category_name" /><br><br>
 <span class="btn-right"><input type="submit" name="submit_cr" class="btn btn-primary btn-lg active" align="right" value="Создать" /></span>
 </form>

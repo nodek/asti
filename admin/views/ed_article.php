@@ -8,6 +8,7 @@
 -->
 <?php
 
+defined('_Asti') or die;
 require_once('../modules/tinymce/tinymce.php');
 
 ?>
@@ -15,7 +16,7 @@ require_once('../modules/tinymce/tinymce.php');
 <br>
 <p>Заголовок</p>
 <form method="post">
-<input type="hidden" name="article_id_ed" value="<?php echo $article_id_ed ?>"/>
+<input type="hidden" name="article_id_ed" value="<?php echo $ID ?>"/>
 <input type="text" class="form-control" name="article_title_ed" value="<?php echo $article_title_ed ?>" /><br><br>
 <p>Категория</p>
 <?php $this->category(); ?><br><br>

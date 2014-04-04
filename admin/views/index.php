@@ -25,9 +25,16 @@
 				<div class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
 						<li><a href=".">Главная</a></li>
-						<li><a href="?articles">Материалы</a></li>
-						<li><a href="?settings">Настройки</a></li>
-						<li><a href="?about">O CMS</a></li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Материалы<b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="?menu_category">Категории</a></li>
+								<li><a href="?menu_articles">Список материалов</a></li>
+								<li><a href="?menu_elfinder">Файловый менеджер</a></li>
+							</ul>
+						</li>
+						<li><a href="?menu_settings">Настройки</a></li>
+						<li><a href="?menu_about">O CMS</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="?exit">Выйти</a></li>

@@ -30,16 +30,22 @@ class admin
 
 	function content()                             
 		{
-		if(isset($_GET['articles']))			// Статьи
-			{
+		if(isset($_GET['menu_category']))			// Категории
+			require_once('models/category.php');
+		if(isset($_GET['menu_elfinder']))			// Файловый менеджер
+			echo "<link rel='stylesheet' type='text/css' media='screen' href='views/css/elfinder.css'>
+			<iframe class='elfinder' src='../modules/elfinder/elfinder.php' width='100%' height='100%' align='center'></iframe>";
+		
+		if(isset($_GET['menu_articles']))			// Статьи
 			require_once('models/articles.php');
-			}
-		if(isset($_GET['about']))				// О CMS
+			
+		if(isset($_GET['menu_about']))				// О CMS
 			require_once('views/about.php');
 		
 		if(empty($_GET))						// Главная страница
 			require_once('views/home.php');
-		if(isset($_GET['settings']))
+		
+		if(isset($_GET['menu_settings']))
 			require_once('views/settings.php');	//Настройки
 		}
 	function category()
@@ -52,6 +58,10 @@ class admin
 			echo "<option value='$cat'>$cat</option>";
 			}
 		echo "</select>";
+		}
+	function __destruct()
+		{
+		mysql_close();
 		}
 	}
 if(isset($_GET['exit']))						// Выход
