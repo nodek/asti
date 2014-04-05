@@ -5783,3 +5783,8 @@ button.close {
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
+.copyright{
+	height: 30px;
+	position: static;
+	bottom: 0;
+}

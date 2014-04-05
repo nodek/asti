@@ -20,7 +20,7 @@
 		<div class="navbar navbar-default" role="navigation">
 			<div class="container-fluid">
 				<div class="navbar-header">
-					<a class="navbar-brand" href="#">Админка</a>
+					<a class="navbar-brand" href="#">ASTI</a>
 				</div>
 				<div class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
@@ -52,4 +52,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="../modules/bootstrap/js/bootstrap.js"></script>
 </body>
+<div align="center" class="copyright">
+	Powered by <a href="http://astana-it.kz" target="_blank">Astana IT</a>
+</div>
 </html>
