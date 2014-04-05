@@ -1,0 +1,14 @@
+select.min{
+	width: 20%;
+	display: inline;
+	margin-right: 3%;
+}
+div.template{
+	background: white;
+	padding: 20px
+}
+p.template{
+	background: white;
+	width: 22%;
+	padding: 5px;
+}

@@ -19,7 +19,7 @@ require_once('../modules/tinymce/tinymce.php');
 <input type="hidden" name="article_id_ed" value="<?php echo $ID ?>"/>
 <input type="text" class="form-control" name="article_title_ed" value="<?php echo $article_title_ed ?>" /><br><br>
 <p>Категория</p>
-<?php $this->category(); ?><br><br>
+<?php category($article_category_ed); ?><br><br>
 <p>Текст</p>
 <textarea name="article_text_ed">
 <?php 

@@ -13,6 +13,6 @@ define('_Asti', 1);
 require_once('controllers/admin.php');
 
 $admin = new admin;
-$admin->start();                // Запускаем функцию start
+$admin->start();			// Запускаем функцию start
 
 ?>

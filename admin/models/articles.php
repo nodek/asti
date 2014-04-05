@@ -13,7 +13,10 @@ defined('_Asti') or die;
 require_once('views/articles.php');					// Отображаем views/articles.php
 
 if(isset($_POST['cr_article']))						// Создать материал
+	{
+	$article_category_ed = '';
 	require_once('views/cr_article.php');
+	}
 
 if(!empty($_POST['article_title']) or !empty($_POST['article_text']))  //Запись в БД
 	{
@@ -26,12 +29,13 @@ if(!empty($_POST['article_title']) or !empty($_POST['article_text']))  //Зап�
 		
 if(isset($_POST['ed_article']) and !empty($_POST['ID']))				// Редактирование материала
 	{
-	$ID = $_POST['ID'];
-	$query = mysql_query("SELECT article_title, article_text FROM articles WHERE article_id=$ID") or die(mysql_error());
+	$ID = mysql_real_escape_string($_POST['ID']);
+	$query = mysql_query("SELECT article_title, article_text, article_category FROM articles WHERE article_id=$ID") or die(mysql_error());
 	while ($result = mysql_fetch_array($query))
 		{
 		$article_title_ed = $result['article_title'];
 		$article_text_ed = $result['article_text'];
+		$article_category_ed = $result['article_category'];
 		}
 	if(empty($article_title_ed) and empty($article_text_ed))
 		echo "Нет материала с таким ID<br><br>"; 
@@ -79,4 +83,18 @@ while ($result = mysql_fetch_array($query))
 	}
 echo "</table>";
 
+function category($article_category_ed)
+	{
+	$query = mysql_query("SELECT article_category FROM category") or die(mysql_error());
+	echo "<select class='form-control' name='article_category'>";
+	while ($result = mysql_fetch_array($query))
+		{
+		$cat = $result['article_category'];
+		if($cat == $article_category_ed)
+			echo "<option selected='$article_category_ed' value='$cat'>$cat</option>";
+		else
+			echo "<option value='$cat'>$cat</option>";
+		}
+	echo "</select>";
+	}
 ?>

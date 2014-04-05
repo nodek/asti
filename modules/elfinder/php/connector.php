@@ -32,7 +32,7 @@ $opts = array(
 		array(
 			'driver'        => 'LocalFileSystem',   // driver for accessing file system (REQUIRED)
 			'path'          => '../../../images/',         // path to files (REQUIRED)
-			'URL'           =>  '../../../images/',//dirname($_SERVER['PHP_SELF']) . '/../files/', 
+			'URL'           =>  '../../../images/', //dirname($_SERVER['PHP_SELF']) . '/../files/', 
 			'accessControl' => 'access'             // disable and hide dot starting files (OPTIONAL)
 		)
 	)
@@ -42,3 +42,4 @@ $opts = array(
 $connector = new elFinderConnector(new elFinder($opts));
 $connector->run();
 
+?>

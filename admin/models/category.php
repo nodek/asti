@@ -24,7 +24,7 @@ if(!empty($_POST['category_name']))  //Запись в БД
 		
 if(isset($_POST['ed_category']) and !empty($_POST['ID_category']))				// Редактирование категории
 	{
-	$ID = $_POST['ID_category'];
+	$ID = mysql_real_escape_string($_POST['ID_category']);
 	$query = mysql_query("SELECT article_category FROM category WHERE category_id=$ID") or die(mysql_error());
 	while ($result = mysql_fetch_array($query))
 		{
@@ -49,7 +49,7 @@ if(isset($_POST['delete']) and !empty($_POST['del_id']))
 	$sql = mysql_query("DELETE FROM category WHERE category_id='$del_id'") or die(mysql_error());
 	}
 	
-$query = mysql_query("SELECT * FROM category") or die(mysql_error());			// Отображаем все материалы
+$query = mysql_query("SELECT * FROM category") or die(mysql_error());			// Отображаем все категории
 echo "<table class='table table-bordered'><tr><td>ID</td><td>Категория</td><td></td></tr>";
 while ($result = mysql_fetch_array($query))
 	{

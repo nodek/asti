@@ -46,19 +46,9 @@ class admin
 			require_once('views/home.php');
 		
 		if(isset($_GET['menu_settings']))
-			require_once('views/settings.php');	//Настройки
+			require_once('models/settings.php');	//Настройки
 		}
-	function category()
-		{
-		$query = mysql_query("SELECT article_category FROM category") or die(mysql_error());
-		echo "<select class='form-control' name='article_category'>";
-		while ($result = mysql_fetch_array($query))
-			{
-			$cat = $result['article_category'];
-			echo "<option value='$cat'>$cat</option>";
-			}
-		echo "</select>";
-		}
+
 	function __destruct()
 		{
 		mysql_close();

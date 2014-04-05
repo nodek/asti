@@ -27,7 +27,7 @@ class asti
 
 	function start()
 		{
-		require_once(template);     // Загружаем шаблон. Настраивается в config.php
+		require_once("templates/".template."/index.php");     // Загружаем шаблон. Настраивается в config.php
 		}
 
 	function q_articles($ID)

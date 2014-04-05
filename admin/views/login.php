@@ -20,16 +20,14 @@
 </head>
 <body>
 
-    <div class="container">
+	<div class="container">
+		<form class="form-signin" role="form" method="post">
+			<h2 class="form-signin-heading">Авторизация</h2>
+			<input type="text" name="login" class="form-control" placeholder="Логин" required autofocus><br>
+			<input type="password" name="password" class="form-control" placeholder="Пароль" required>
+			<button class="btn btn-lg btn-primary btn-block" type="submit" name="submit">Войти</button>
+		</form>
+	</div>
 
-      <form class="form-signin" role="form" method="post">
-        <h2 class="form-signin-heading">Авторизация</h2>
-        <input type="text" name="login" class="form-control" placeholder="Логин" required autofocus><br>
-        <input type="password" name="password" class="form-control" placeholder="Пароль" required>
-        <button class="btn btn-lg btn-primary btn-block" type="submit" name="submit">Войти</button>
-      </form>
-
-    </div>
-
-  </body>
+</body>
 </html>
