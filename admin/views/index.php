@@ -52,7 +52,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="../modules/bootstrap/js/bootstrap.js"></script>
 </body>
-<div align="center" class="copyright">
+<div align="center">
+	<span class="copyright">
 	Powered by <a href="http://astana-it.kz" target="_blank">Astana IT</a>
+	</span>
 </div>
 </html>

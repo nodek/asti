@@ -24,7 +24,6 @@
 </form>
 
 <?php
-
 if(!empty($_POST['login']) && isset($_POST['pass']) && !empty($_POST['host']) && !empty($_POST['database']))
 	{
 	$line['login']="3";

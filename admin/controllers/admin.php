@@ -25,7 +25,14 @@ class admin
 		}
 	function start()							// Проверяем авторизован ли пользователь
 		{
-		require_once('models/auth.php');
+		$dir = "../";
+		require_once('../components/user/user.php');
+		$user = new user;
+		$user->start($dir);
+		if($user->logged() == true)
+			require_once('views/index.php');
+		else
+			require_once('views/user/login.php');
 		}
 
 	function content()                             
@@ -54,10 +61,4 @@ class admin
 		mysql_close();
 		}
 	}
-if(isset($_GET['exit']))						// Выход
-	{
-	setcookie('id', '', time() - 60*60*24*30);
-	setcookie('hash', '', time() - 60*60*24*30);
-	header('Location: login.php'); exit();
-	} 
 ?>
