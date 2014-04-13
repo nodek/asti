@@ -15,7 +15,7 @@ defined('_Asti') or die;
 <br>
 <p>Категория</p>
 <form method="post">
-<input type="hidden" name="category_id_ed" value="<?php echo $ID ?>"/>
+<input type="hidden" name="category_id_ed" value="<?php echo $ID_ed ?>"/>
 <input type="text" class="form-control" name="category_name_ed" value="<?php echo $article_category_ed ?>" /><br><br>
 <span class="btn-right"><input type="submit" name="submit_ed" class="btn btn-primary btn-lg active" align="right" value="Сохранить" /></span>
 </form>

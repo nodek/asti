@@ -29,12 +29,25 @@ function reg_user()
 		&& !empty($_POST['user_pass_repeat'])
 		&& ($_POST['user_pass_new'] === $_POST['user_pass_repeat'])) 
 		{
-		
-		$user_login = mysql_real_escape_string(strip_tags($_POST['user_login'], ENT_QUOTES));
+		$user_login = $_POST['user_login'];
 		$user_password = $_POST['user_pass_new'];
-		$salt = '$2a$10$'.substr(str_replace('+', '.', base64_encode(pack('N4', mt_rand(), mt_rand(), mt_rand(),mt_rand()))), 0, 22) . '$';
-		$user_pass_hash = CRYPT($user_password, $salt);
 		
+		if (version_compare(PHP_VERSION, '5.5', '>='))
+			{
+			$options = array(
+			'salt' => mcrypt_create_iv(22, MCRYPT_DEV_URANDOM),
+			'cost' => 12 
+			);
+			$user_pass_hash = password_hash($user_password, PASSWORD_BCRYPT, $options);
+			echo 'Моя версия: ' . PHP_VERSION . "\n";
+			}
+		else
+			{
+			$salt = '$2a$10$'.substr(str_replace('+', '.', base64_encode(pack('N4', mt_rand(), mt_rand(), mt_rand(),mt_rand()))), 0, 22) . '$';
+			$user_pass_hash = CRYPT($user_password, $salt);
+			}
+
+			
 		require_once('../config/database.php');
 		// Соединение с сервером БД
 		mysql_connect(mysql_host, mysql_login, mysql_pass) or die ("Ошибка соединения: ". mysql_error());
@@ -43,13 +56,13 @@ function reg_user()
 		// Выбрать БД
 		mysql_select_db(mysql_database) or die("Ошибка подключения к БД: ". mysql_error());
 		
-		$find_user = mysql_query("SELECT COUNT(users_id) FROM `users` WHERE `users_login` = '$user_login';");
+		$find_user = mysql_query("SELECT COUNT(user_id) FROM `users` WHERE `user_login` = '$user_login';");
 		if(mysql_result($find_user, 0) > 0)
 			echo "Пользователь с таким логином уже существует в базе данных";
 		else
 			{
-			if(mysql_query("INSERT INTO `users` (`users_login`, `users_password`) VALUES('$user_login', '$user_pass_hash');"))
-				echo "Учетная запись успешно добавлена в базу данных";
+			if(mysql_query("INSERT INTO `users` (`user_login`, `user_password`, `user_role`) VALUES('$user_login', '$user_pass_hash', 'admin');"))
+				echo "Учетная запись $user_login успешно добавлена в базу данных<br>Удалите каталог install";
 			else
 				echo "Не удалось создать учетную запись";
 			}

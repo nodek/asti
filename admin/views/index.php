@@ -7,6 +7,11 @@
  * @copyright  Copyright (C) 2014. Astana - IT. All rights reserved.
  * @license    GNU General Public License; see LICENSE.txt
 -->
+<?php
+
+defined('_Asti') or die;
+
+?>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -28,16 +33,16 @@
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Материалы<b class="caret"></b></a>
 							<ul class="dropdown-menu">
-								<li><a href="?menu_category">Категории</a></li>
-								<li><a href="?menu_articles">Список материалов</a></li>
-								<li><a href="?menu_elfinder">Файловый менеджер</a></li>
+								<li><a href="category">Категории</a></li>
+								<li><a href="articles">Список материалов</a></li>
+								<li><a href="elfinder">Файловый менеджер</a></li>
 							</ul>
 						</li>
-						<li><a href="?menu_settings">Настройки</a></li>
-						<li><a href="?menu_about">O CMS</a></li>
+						<li><a href="settings">Настройки</a></li>
+						<li><a href="about">O CMS</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="?exit">Выйти</a></li>
+						<li><a href="exit">Выйти</a></li>
 					</ul>
 				</div>
 			</div>

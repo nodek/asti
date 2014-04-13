@@ -77,21 +77,26 @@ require_once("../config/database.php");
 			{ 												// Создаем 2 таблицы
 			mysql_query('SET NAMES utf8');                                
 			mysql_query('CREATE TABLE IF NOT EXISTS articles(
-							article_id INTEGER not null auto_increment primary key,
-							article_title VARCHAR(120) not null,
+							article_id INT(11) not null auto_increment primary key,
+							article_title VARCHAR(200) not null,
 							article_text LONGTEXT not null,
 							article_date TIMESTAMP not null DEFAULT CURRENT_TIMESTAMP,
-							article_category VARCHAR(30)
+							article_category CHAR(30)
 							)')  or die ("<br>Таблица не создана: " . mysql_error());
 			mysql_query('CREATE TABLE IF NOT EXISTS users(
-							users_id INT(11) UNSIGNED not null auto_increment primary key,
-							users_login VARCHAR(20) not null,
-							users_password VARCHAR(32) not null,
-							users_hash VARCHAR(32) not null
+							user_id INT(11) UNSIGNED not null auto_increment primary key,
+							user_login CHAR(20) not null,
+							user_password VARCHAR(100) not null,
+							user_role CHAR(20),
+							user_name CHAR(30),
+							user_surname CHAR(30),
+							user_gender CHAR(10),
+							user_birthday DATETIME,
+							user_email CHAR(30)
 							)')  or die ("<br>Таблица не создана: " . mysql_error()); 
 			mysql_query('CREATE TABLE IF NOT EXISTS category(
-							category_id INTEGER not null auto_increment primary key,
-							article_category VARCHAR(30) not null
+							category_id INT(11) not null auto_increment primary key,
+							article_category CHAR(30) not null
 							)')  or die ("<br>Таблица не создана: " . mysql_error());
 			echo "Таблицы успешно созданы!";
 			echo "<br><br><form action='register.php' method= 'post'>

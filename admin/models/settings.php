@@ -22,7 +22,7 @@ function t_default()
 function template()
 	{
 	$dir    = '../templates/';
-	$skip = array('.', '..');
+	$skip = array('.', '..', '.htaccess');
 	$files1 = scandir($dir);
 	echo "<select class='form-control min' name='template_ed'>";
 	foreach($files1 as $file)

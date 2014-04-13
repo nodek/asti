@@ -25,10 +25,9 @@ class admin
 		}
 	function start()							// Проверяем авторизован ли пользователь
 		{
-		$dir = "../";
-		require_once('../components/user/user.php');
+		require_once('user.php');
 		$user = new user;
-		$user->start($dir);
+		$user->start();
 		if($user->logged() == true)
 			require_once('views/index.php');
 		else
@@ -37,22 +36,22 @@ class admin
 
 	function content()                             
 		{
-		if(isset($_GET['menu_category']))			// Категории
+		if(isset($_GET['menu']) && $_GET['menu'] == 'category')			// Категории
 			require_once('models/category.php');
-		if(isset($_GET['menu_elfinder']))			// Файловый менеджер
+		if(isset($_GET['menu']) && $_GET['menu'] == 'elfinder')			// Файловый менеджер
 			echo "<link rel='stylesheet' type='text/css' media='screen' href='views/css/elfinder.css'>
 			<iframe class='elfinder' src='../modules/elfinder/elfinder.php' width='100%' height='100%' align='center'></iframe>";
 		
-		if(isset($_GET['menu_articles']))			// Статьи
+		if(isset($_GET['menu']) && $_GET['menu'] == 'articles')			// Статьи
 			require_once('models/articles.php');
 			
-		if(isset($_GET['menu_about']))				// О CMS
-			require_once('views/about.php');
+		if(isset($_GET['menu']) && $_GET['menu'] == 'about')				// О CMS
+			require_once('views/about/about.php');
 		
 		if(empty($_GET))						// Главная страница
 			require_once('views/home.php');
 		
-		if(isset($_GET['menu_settings']))
+		if(isset($_GET['menu']) && $_GET['menu'] == 'settings')
 			require_once('models/settings.php');	//Настройки
 		}
 

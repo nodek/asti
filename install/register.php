@@ -17,7 +17,7 @@
 <meta name="author" content="">
 <title>Регистрация</title>
 <link href="../css/bootstrap.css" rel="stylesheet">
-<link href="signin.css" rel="stylesheet">
+<link href="../admin/views/css/signin.css" rel="stylesheet">
 </head>
 <body>
 	<div class="container">
@@ -37,7 +37,7 @@ define('_Asti', 1);
 if(isset($_POST['register']))
 {
 
-require_once('../components/user/models/register.php');
+require_once('../admin/models/register.php');
 $register = new register;
 $register->reg_user();
 

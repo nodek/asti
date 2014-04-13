@@ -27,15 +27,21 @@ class asti
 
 	function start()
 		{
-		require_once("templates/".template."/index.php");     // Загружаем шаблон. Настраивается в config.php
+		require_once("templates/".template."/index.php");			// Загружаем шаблон. Настраивается в config.php
 		}
 
 	function q_articles($ID)
 		{
 		$ID = (int) $ID;
-		$query = mysql_query("SELECT article_text FROM articles WHERE article_id=$ID") or die(mysql_error());      // Выбираем содержимое поля article_text из таблицы articles
-		$result = mysql_result($query, 0);
-		echo $result;                            // Выводим результат
+		$query = mysql_query("SELECT COUNT(`article_text`) FROM `articles` WHERE `article_id`='$ID'");      
+		if(mysql_result($query, 0) > 0)
+			{
+			$query = mysql_fetch_array(mysql_query("SELECT `article_text` FROM `articles` WHERE `article_id`='$ID'")); // Выбираем содержимое поля article_text из таблицы articles
+			$result = stripslashes(base64_decode($query['article_text']));
+			echo $result;						// Выводим результат
+			}
+		else
+			echo "Нет такого материала";
 		}
 	function __destruct()
 		{

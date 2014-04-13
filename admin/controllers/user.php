@@ -13,13 +13,13 @@ defined('_Asti') or die;
 class user
 	{
 
-	public function start($dir)
+	public function start()
 		{
 		session_start();
-		if(isset($_GET['exit']))
+		if(isset($_GET['menu']) && $_GET['menu'] == 'exit')
 			$this->logout();
 		if(isset($_POST['auth']))
-			$this->login($dir);
+			$this->login();
 		}
 
 	function logged()
@@ -29,9 +29,9 @@ class user
 		return false;
 		}
 
-	function login($dir)
+	function login()
 		{
-		require_once($dir.'components/user/models/login.php');
+		require_once('models/login.php');
 		}
 
 	function logout()
@@ -40,9 +40,9 @@ class user
 		session_destroy();
 		header('Location: .');
 		}
-	function register($dir)
+	function register()
 		{
-		require_once($dir.'components/user/models/register.php');
+		require_once('models/register.php');
 		$register = new register;
 		$register->reg_user();
 		}
