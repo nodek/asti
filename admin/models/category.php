@@ -15,13 +15,14 @@ require_once('views/category/category.php');					// Отображаем views/c
 if(isset($_POST['cr_category']))						// Создать категорию
 	require_once('views/category/cr_category.php');
 
-if(!empty($_POST['category_name']))  //Запись в БД
+if(!empty($_POST['category_name']))						//Запись в БД
 	{
 	if(!preg_match('/^[а-яa-z]+$/iu', $_POST['category_name']))
 		echo "Имя категории может состоять только из букв";
 	else
 		{
-		$c_name = $_POST['category_name'];
+		$name = $_POST['category_name'];
+		$c_name = $this->s_name($name);
 		mysql_query("INSERT INTO `category`(`article_category`) VALUES ('$c_name')") or die(mysql_error());
 		echo "<p class='p-signin'>Категория успешно добавлена</p><br><br>";
 		}
@@ -48,7 +49,8 @@ if(isset($_POST['category_id_ed']) && isset($_POST['category_name_ed']) && isset
 		echo "Имя категории может состоять только из букв";
 	else
 		{		
-		$cat_ed = $_POST['category_name_ed'];
+		$name = $_POST['category_name_ed'];
+		$cat_ed = $this->s_name($name);
 		$id_ed = $_POST['category_id_ed'];
 		$id_ed = (int) $id_ed;
 		mysql_query("UPDATE `category` SET `article_category`='$cat_ed' where `category_id`='$id_ed'") or die(mysql_error());

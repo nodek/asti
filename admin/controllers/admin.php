@@ -55,6 +55,30 @@ class admin
 			require_once('models/settings.php');	//Настройки
 		}
 
+	function s_name($name)
+		{
+		$name1 = strip_tags(preg_replace('/[\#\/\'\%\`\&\,\.\"\?\@]/','',$name));
+		if(get_magic_quotes_gpc() == 1)
+			$name2 = stripslashes($name1);
+		else
+			$name2 = $name1;
+
+		$s_name = mysql_real_escape_string($name2);
+		return $s_name;
+		}
+		
+	function s_title($title)
+		{
+		$title1 = strip_tags(preg_replace('/[\#\/\'\%\`\&]/','',$title));
+		if(get_magic_quotes_gpc() == 1)
+			$title2 = stripslashes($title1);
+		else
+			$title2 = $title1;
+
+		$s_title = mysql_real_escape_string($title2);
+		return $s_title;
+		}
+
 	function __destruct()
 		{
 		mysql_close();

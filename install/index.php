@@ -78,7 +78,7 @@ require_once("../config/database.php");
 			mysql_query('SET NAMES utf8');                                
 			mysql_query('CREATE TABLE IF NOT EXISTS articles(
 							article_id INT(11) not null auto_increment primary key,
-							article_title VARCHAR(200) not null,
+							article_title VARCHAR(120) not null,
 							article_text LONGTEXT not null,
 							article_date TIMESTAMP not null DEFAULT CURRENT_TIMESTAMP,
 							article_category CHAR(30)

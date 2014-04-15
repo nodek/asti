@@ -20,12 +20,13 @@ if(isset($_POST['cr_article']))						// Создать материал
 
 if(!empty($_POST['article_title']) or !empty($_POST['article_text']))  //Запись в БД
 	{
-	if(preg_match('/^[а-яa-z]+$/iu', $_POST['article_category']) || $_POST['article_category'] == "")
+	if(preg_match('/^[а-яa-z]+$/iu', $_POST['article_category']) || empty($_POST['article_category']))
 		{
-		$a_text = base64_encode($_POST['article_text']);
-		$a_title = base64_encode(strip_tags($_POST['article_title']));
-		$a_category = $_POST['article_category'];
-		mysql_query("INSERT INTO `articles`(`article_title`, `article_text`, `article_category`) VALUES ('$a_title', '$a_text', '$a_category')") or die(mysql_error());
+		$c_text = base64_encode($_POST['article_text']);
+		$title = $_POST['article_title'];
+		$c_title = $this->s_title($title);
+		$c_category = $_POST['article_category'];
+		mysql_query("INSERT INTO `articles`(`article_title`, `article_text`, `article_category`) VALUES ('$c_title', '$c_text', '$c_category')") or die(mysql_error());
 		echo "<p class='p-signin'>Материал успешно добавлен</p><br><br>";
 		}
 	else
@@ -39,7 +40,7 @@ if(isset($_POST['ed_article']) and !empty($_POST['ID']))				// Редактир�
 	$query = mysql_query("SELECT `article_title`, `article_text`, `article_category`, `article_id` FROM `articles` WHERE `article_id`=$ID") or die(mysql_error());
 	while ($result = mysql_fetch_array($query))
 		{
-		$article_title_ed = stripslashes(htmlspecialchars(base64_decode($result['article_title'])));
+		$article_title_ed = htmlspecialchars(stripslashes($result['article_title']));
 		$article_text_ed = stripslashes(base64_decode($result['article_text']));
 		$article_category_ed = $result['article_category'];
 		$article_id_ed = $result['article_id'];
@@ -54,11 +55,12 @@ if(isset($_POST['submit_ed']) && isset($_POST['article_title_ed']) && isset($_PO
 	if(preg_match('/^[а-яa-z]+$/iu', $_POST['article_category'])  || $_POST['article_category'] == "")
 		{
 		$cat = $_POST['article_category'];
-		$titl_ed = base64_encode(strip_tags($_POST['article_title_ed']));
+		$title = $_POST['article_title_ed'];
+		$title_ed = $this->s_title($title);
 		$text_ed = base64_encode($_POST['article_text_ed']);
 		$id_ed = $_POST['article_id_ed'];
 		$id_ed = (int) $id_ed;
-		mysql_query("UPDATE `articles` SET `article_title`='$titl_ed', `article_text`='$text_ed', `article_category`='$cat' where `article_id`='$id_ed'") or die(mysql_error());
+		mysql_query("UPDATE `articles` SET `article_title`='$title_ed', `article_text`='$text_ed', `article_category`='$cat' where `article_id`='$id_ed'") or die(mysql_error());
 		echo "<p class='p-signin'>Редактирование успешно завершено</p><br><br>";
 		}
 	else
@@ -82,7 +84,7 @@ while ($result = mysql_fetch_array($query))
 	echo $result['article_id'];
 	echo "</td>";
 	echo "<td>";
-	echo base64_decode($result['article_title']);
+	echo $result['article_title'];
 	echo "</td>";
 	echo "<td>";
 	echo $result['article_category'];
@@ -102,15 +104,21 @@ function category($article_category_ed)			// Отображаем категор
 	if(preg_match('/^[а-яa-z]+$/iu', $article_category_ed) || $article_category_ed == "")
 		{
 		$article_category = $article_category_ed;
-		$query = mysql_query("SELECT `article_category` FROM `category`") or die(mysql_error());
+		$find = mysql_query("SELECT COUNT(`article_category`) FROM `category`") or die(mysql_error());
 		echo "<select class='form-control' name='article_category'>";
-		while ($result = mysql_fetch_array($query))
+		if(mysql_result($find, 0) == 0)
+			echo "<option value=''></option>";
+		else
 			{
-			$cat = $result['article_category'];
-			if($cat == $article_category)
-				echo "<option selected='$cat' value='$cat'>$cat</option>";
-			else
-				echo "<option value='$cat'>$cat</option>";
+			$query = mysql_query("SELECT `article_category` FROM `category`") or die(mysql_error());
+			while ($result = mysql_fetch_array($query))
+				{
+				$cat = $result['article_category'];
+				if($cat == $article_category)
+					echo "<option selected='$cat' value='$cat'>$cat</option>";
+				else
+					echo "<option value='$cat'>$cat</option>";
+				}
 			}
 		echo "</select>";
 		}
