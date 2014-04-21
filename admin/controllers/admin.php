@@ -2,7 +2,7 @@
 /**
  * ASTI
  * 
- * @author Eselbaev A
+ * @author Eselbaev Asyllan
  * @link http://astana-it.kz
  * @copyright  Copyright (C) 2014. Astana - IT. All rights reserved.
  * @license    GNU General Public License; see LICENSE.txt
@@ -57,28 +57,36 @@ class admin
 
 	function s_name($name)
 		{
-		$name1 = strip_tags(preg_replace('/[\#\/\'\%\`\&\,\.\"\?\@]/','',$name));
-		if(get_magic_quotes_gpc() == 1)
-			$name2 = stripslashes($name1);
-		else
-			$name2 = $name1;
-
-		$s_name = mysql_real_escape_string($name2);
+		$data = strip_tags(preg_replace('/[\#\/\'\%\`\&\,\.\"\?\@]/','',$name));
+		$s_name = $this->escape($data);
 		return $s_name;
+		}
+		
+	function s_key($key)
+		{
+		$data = strip_tags(preg_replace('/[\#\/\'\%\`\&\.\"\?\@\$]/','',$key));
+		$s_key = $this->escape($data);
+		return $s_key;
 		}
 		
 	function s_title($title)
 		{
-		$title1 = strip_tags(preg_replace('/[\#\/\'\%\`\&]/','',$title));
-		if(get_magic_quotes_gpc() == 1)
-			$title2 = stripslashes($title1);
-		else
-			$title2 = $title1;
-
-		$s_title = mysql_real_escape_string($title2);
+		$data = strip_tags(preg_replace('/[\#\/\'\%\`\&]/','',$title));
+		$s_title = $this->escape($data);
 		return $s_title;
 		}
+	
+	function escape($data)
+		{
+		if(get_magic_quotes_gpc() == 1)
+			$data1 = stripslashes($data);
+		else
+			$data1 = $data;
 
+		$s_data = mysql_real_escape_string($data1);
+		return $s_data;
+		}
+	
 	function __destruct()
 		{
 		mysql_close();

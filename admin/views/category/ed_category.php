@@ -1,7 +1,7 @@
 ﻿<!--
  * ASTI
  * 
- * @author Eselbaev A
+ * @author Eselbaev Asyllan
  * @link http://astana-it.kz
  * @copyright  Copyright (C) 2014. Astana - IT. All rights reserved.
  * @license    GNU General Public License; see LICENSE.txt
@@ -16,6 +16,6 @@ defined('_Asti') or die;
 <p>Категория</p>
 <form method="post">
 <input type="hidden" name="category_id_ed" value="<?php echo $ID_ed ?>"/>
-<input type="text" class="form-control" name="category_name_ed" value="<?php echo $article_category_ed ?>" /><br><br>
+<input type="text" class="form-control" name="category_name_ed" value="<?php echo $article_category_ed ?>" required /><br><br>
 <span class="btn-right"><input type="submit" name="submit_ed" class="btn btn-primary btn-lg active" align="right" value="Сохранить" /></span>
 </form>

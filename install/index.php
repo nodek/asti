@@ -2,7 +2,7 @@
 /**
  * ASTI
  * 
- * @author Eselbaev A
+ * @author Eselbaev Asyllan
  * @link http://astana-it.kz
  * @copyright  Copyright (C) 2014. Astana - IT. All rights reserved.
  * @license    GNU General Public License; see LICENSE.txt
@@ -26,11 +26,6 @@
 <?php
 if(!empty($_POST['login']) && isset($_POST['pass']) && !empty($_POST['host']) && !empty($_POST['database']))
 	{
-	$line['login']="3";
-	$line['pass']="4";
-	$line['host']="5";
-	$line['database']="6"; 
-		
 	$login=$_POST['login'];
 	$pass=$_POST['pass'];
 	$host=$_POST['host'];
@@ -44,7 +39,7 @@ define('mysql_host', \"$host\");			// Хост
 define('mysql_database', \"$database\");	// Имя БД
 
 ?>";
-	file_put_contents("../config/database.php",$d);
+	file_put_contents("../config/database.php",$d);			//Запись конф файла
 	echo "Настройки успешно сохранены <br><br>";
 	}
 
@@ -74,14 +69,16 @@ require_once("../config/database.php");
 			die('База данных не найдена: ' . mysql_error());
 			}
 		else
-			{ 												// Создаем 2 таблицы
+			{ 												// Создаем таблицы
 			mysql_query('SET NAMES utf8');                                
 			mysql_query('CREATE TABLE IF NOT EXISTS articles(
 							article_id INT(11) not null auto_increment primary key,
-							article_title VARCHAR(120) not null,
+							article_title VARCHAR(200) not null,
 							article_text LONGTEXT not null,
 							article_date TIMESTAMP not null DEFAULT CURRENT_TIMESTAMP,
-							article_category CHAR(30)
+							article_category CHAR(30),
+							article_descr VARCHAR(120),
+							article_key VARCHAR(120)
 							)')  or die ("<br>Таблица не создана: " . mysql_error());
 			mysql_query('CREATE TABLE IF NOT EXISTS users(
 							user_id INT(11) UNSIGNED not null auto_increment primary key,

@@ -2,7 +2,7 @@
 /**
  * ASTI
  * 
- * @author Eselbaev A
+ * @author Eselbaev Asyllan
  * @link http://astana-it.kz
  * @copyright  Copyright (C) 2014. Astana - IT. All rights reserved.
  * @license    GNU General Public License; see LICENSE.txt
@@ -17,15 +17,20 @@ if(isset($_POST['cr_category']))						// Создать категорию
 
 if(!empty($_POST['category_name']))						//Запись в БД
 	{
-	if(!preg_match('/^[а-яa-z]+$/iu', $_POST['category_name']))
-		echo "Имя категории может состоять только из букв";
-	else
+	if(strlen($_POST['category_name']) <= 30)
 		{
-		$name = $_POST['category_name'];
-		$c_name = $this->s_name($name);
-		mysql_query("INSERT INTO `category`(`article_category`) VALUES ('$c_name')") or die(mysql_error());
-		echo "<p class='p-signin'>Категория успешно добавлена</p><br><br>";
+		if(!preg_match('/^[а-яa-z\s]+$/iu', $_POST['category_name']))
+			echo "Имя категории может состоять только из букв";
+		else
+			{
+			$name = $_POST['category_name'];
+			$c_name = $this->s_name($name);
+			mysql_query("INSERT INTO `category`(`article_category`) VALUES ('$c_name')") or die(mysql_error());
+			echo "<p class='p-signin'>Категория успешно добавлена</p><br><br>";
+			}
 		}
+	else
+		echo "Имя категории не должен превышать 30 символов";
 	}
 		
 if(isset($_POST['ed_category']) and !empty($_POST['ID_category']))				// Редактирование категории
@@ -45,17 +50,22 @@ if(isset($_POST['ed_category']) and !empty($_POST['ID_category']))				// Ред�
 	}
 if(isset($_POST['category_id_ed']) && isset($_POST['category_name_ed']) && isset($_POST['submit_ed']))											// Запись в БД
 	{
-	if(!preg_match('/^[а-яa-z]+$/iu', $_POST['category_name_ed']))
-		echo "Имя категории может состоять только из букв";
-	else
-		{		
-		$name = $_POST['category_name_ed'];
-		$cat_ed = $this->s_name($name);
-		$id_ed = $_POST['category_id_ed'];
-		$id_ed = (int) $id_ed;
-		mysql_query("UPDATE `category` SET `article_category`='$cat_ed' where `category_id`='$id_ed'") or die(mysql_error());
-		echo "<p class='p-signin'>Редактирование успешно завершено</p><br><br>";
+	if(strlen($_POST['category_name_ed']) <= 30)
+		{
+		if(!preg_match('/^[а-яa\s]+$/iu', $_POST['category_name_ed']))
+			echo "Имя категории может состоять только из букв";
+		else
+			{		
+			$name = $_POST['category_name_ed'];
+			$cat_ed = $this->s_name($name);
+			$id_ed = $_POST['category_id_ed'];
+			$id_ed = (int) $id_ed;
+			mysql_query("UPDATE `category` SET `article_category`='$cat_ed' where `category_id`='$id_ed'") or die(mysql_error());
+			echo "<p class='p-signin'>Редактирование успешно завершено</p><br><br>";
+			}
 		}
+	else
+		echo "Имя категории не должен превышать 30 символов";
 	}
 
 if(isset($_POST['delete']) and !empty($_POST['del_id']))
